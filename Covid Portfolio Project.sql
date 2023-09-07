@@ -50,29 +50,4 @@ where continent is not null
 Group by continent
 order by TotalDeathCount desc
 
--- Global Numbers 
 
-Select SUM(new_cases) as total_cases , SUM(cast(new_deaths as int)) as total_deaths, SUM(cast(new_deaths as int))/SUM(new_cases)*100 as DeathPercentage
-From PortfolioProject..CovidDeaths
---Where location like '%states%'
-where continent is not null
---Group by date
-order by 1,2
-
-Join CovidDeaths & CovidVaccinations tables
-
-select * 
-From PortfolioProject..CovidDeaths dea
-Join PortfolioProject..CovidVaccinations vac
-    On dea.location = vac.location
-	and dea.date = vac.date
-
---Total Population vs Vaccinations
-
-select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
-From PortfolioProject..CovidDeaths dea
-Join PortfolioProject..CovidVaccinations vac
-    On dea.location = vac.location
-	and dea.date = vac.date
-	where dea.continent is not null
-order by 2,3
